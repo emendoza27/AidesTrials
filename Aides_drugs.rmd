@@ -24,9 +24,54 @@ In order to analyze and report on the apparent effectiveness of the three differ
 
 # South Carolina
 
+### Graphical Results
+```{r}
+barchartGC(~infected + group, data=Scarolina, type="percent", main = "South Carolina Male and Female")
+```
+
 We will subset the data by sex to see if the drug is sex specific.
 
+```{r}
+ScarolinaM <- filter(Scarolina,sex=="M")
+barchartGC(~infected + group, data=ScarolinaM, type="percent", main = "South Carolina Male")
+```
 
+```{r}
+ScarolinaF<-filter(Scarolina,sex=="F")
+barchartGC(~infected + group, data=ScarolinaF, type="percent", main = "South Carolina Female")
+```
+
+### Numerical Results
+
+```{r}
+Scarolina_table <- xtabs(~infected + group, data = Scarolina)
+rowPerc(Scarolina_table)
+```
+
+```{r}
+ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
+rowPerc(ScarolinaM_table)
+```
+
+
+```{r}
+ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
+rowPerc(ScarolinaF_table)
+```
+
+### Inferential Results
+
+```{r}
+chisqtestGC(Scarolina_table)
+```
+
+```{r}
+chisqtestGC(ScarolinaM_table)
+```
+
+```{r}
+chisqtestGC(ScarolinaF_table)
+```
 
 # Central Africa
 
