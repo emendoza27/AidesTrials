@@ -126,8 +126,53 @@ chisqtestGC(cenAfricaF_table)
 
 # Korea
 
+### Graphical Results
+```{r}
+barchartGC(~infected + group, data=korea, type="percent", main = "Central Africa Male and Female")
+```
+
 We will subset the data by sex to see if the drug is sex specific.
 
+```{r}
+koreaM <- filter(korea,sex=="M")
+barchartGC(~infected + group, data=koreaM, type="percent", main = "Central Africa Male")
+```
 
+```{r}
+koreaF<-filter(korea,sex=="F")
+barchartGC(~infected + group, data=koreaF, type="percent", main = "Central Africa Female")
+```
+
+### Numerical Results
+
+```{r}
+korea_table <- xtabs(~infected + group, data = korea)
+rowPerc(korea_table)
+```
+
+```{r}
+koreaM_table <- xtabs(~infected + group, data = koreaM)
+rowPerc(koreaM_table)
+```
+
+
+```{r}
+koreaF_table <- xtabs(~infected + group, data = koreaF)
+rowPerc(koreaF_table)
+```
+
+### Inferential Results
+
+```{r}
+chisqtestGC(korea_table)
+```
+
+```{r}
+chisqtestGC(koreaM_table)
+```
+
+```{r}
+chisqtestGC(koreaF_table)
+```
 
 # Conctusion
