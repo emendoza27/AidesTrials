@@ -1,7 +1,7 @@
 ---
 title: "Aides Tests"
 author: "Elisabet Mendoza"
-date: "October 31, 2017"
+date: "December 9, 2017"
 output: html_document
 ---
 
@@ -25,37 +25,47 @@ In order to analyze and report on the apparent effectiveness of the three differ
 # South Carolina
 
 ### Graphical Results
+
 ```{r}
-barchartGC(~infected + group, data=Scarolina, type="percent", main = "South Carolina Male and Female")
+barchartGC(~group + infected, data=Scarolina, type="percent", main = "South Carolina Male and Female")
 ```
 
-We will subset the data by sex to see if the drug is sex specific.
+Looking at the South Carolina barchart when we conbin male and female we can see that the populasion that recived the drug with about 5% and the populasion that recived the placebo with about 5% show littel to no difrence. The drug seams to have no efect against aids when we look at the male and female populasion together.
+
+##### We will subset the data by sex to see if the drug is sex specific.
 
 ```{r}
 ScarolinaM <- filter(Scarolina,sex=="M")
-barchartGC(~infected + group, data=ScarolinaM, type="percent", main = "South Carolina Male")
+barchartGC(~group + infected, data=ScarolinaM, type="percent", main = "South Carolina Male")
 ```
+
+Looking at the South Carolina barchart when we look at the male population only we can see that does whom recived the drug have about 7% infected with aids and those that recived the placebo only had about 5% infrcted with aids.
 
 ```{r}
 ScarolinaF<-filter(Scarolina,sex=="F")
-barchartGC(~infected + group, data=ScarolinaF, type="percent", main = "South Carolina Female")
+barchartGC(~group + infected, data=ScarolinaF, type="percent", main = "South Carolina Female")
 ```
+
+Looking at the South Carolina barchart when we look at the female population only we can see that does whom recived the drug have about had about 4% of the pupolation infected with aids and those that recived the placebo had about 6% infected with aids.
 
 ### Numerical Results
 
 ```{r}
-Scarolina_table <- xtabs(~infected + group, data = Scarolina)
+Scarolina_table <- xtabs(~group + infected, data = Scarolina)
 rowPerc(Scarolina_table)
 ```
 
+Here we can see that indeed there is olny a .14% difrence. This is an amount too small to consider significant.
+
 ```{r}
-ScarolinaM_table <- xtabs(~infected + group, data = ScarolinaM)
+ScarolinaM_table <- xtabs(~group + infected, data = ScarolinaM)
 rowPerc(ScarolinaM_table)
 ```
 
+when we see the results for the male pupolation we can see that the drug may have had a revers effect. The diffrence from 5.27% of infected with the placebo and the incresed amount of 7.09% inthe population the recived the drug.
 
 ```{r}
-ScarolinaF_table <- xtabs(~infected + group, data = ScarolinaF)
+ScarolinaF_table <- xtabs(~group + infected, data = ScarolinaF)
 rowPerc(ScarolinaF_table)
 ```
 
@@ -77,36 +87,36 @@ chisqtestGC(ScarolinaF_table)
 
 ### Graphical Results
 ```{r}
-barchartGC(~infected + group, data=cenAfrica, type="percent", main = "Central Africa Male and Female")
+barchartGC(~group + infected, data=cenAfrica, type="percent", main = "Central Africa Male and Female")
 ```
 
-We will subset the data by sex to see if the drug is sex specific.
+##### We will subset the data by sex to see if the drug is sex specific.
 
 ```{r}
 cenAfricaM <- filter(cenAfrica,sex=="M")
-barchartGC(~infected + group, data=cenAfricaM, type="percent", main = "Central Africa Male")
+barchartGC(~group + infected, data=cenAfricaM, type="percent", main = "Central Africa Male")
 ```
 
 ```{r}
 cenAfricaF<-filter(cenAfrica,sex=="F")
-barchartGC(~infected + group, data=cenAfricaF, type="percent", main = "Central Africa Female")
+barchartGC(~group + infected, data=cenAfricaF, type="percent", main = "Central Africa Female")
 ```
 
 ### Numerical Results
 
 ```{r}
-cenAfrica_table <- xtabs(~infected + group, data = cenAfrica)
+cenAfrica_table <- xtabs(~group + infected, data = cenAfrica)
 rowPerc(cenAfrica_table)
 ```
 
 ```{r}
-cenAfricaM_table <- xtabs(~infected + group, data = cenAfricaM)
+cenAfricaM_table <- xtabs(~group + infected, data = cenAfricaM)
 rowPerc(cenAfricaM_table)
 ```
 
 
 ```{r}
-cenAfricaF_table <- xtabs(~infected + group, data = cenAfricaF)
+cenAfricaF_table <- xtabs(~group + infected, data = cenAfricaF)
 rowPerc(cenAfricaF_table)
 ```
 
@@ -128,36 +138,36 @@ chisqtestGC(cenAfricaF_table)
 
 ### Graphical Results
 ```{r}
-barchartGC(~infected + group, data=korea, type="percent", main = "Central Africa Male and Female")
+barchartGC(~group + infected, data=korea, type="percent", main = "Central Africa Male and Female")
 ```
 
-We will subset the data by sex to see if the drug is sex specific.
+##### We will subset the data by sex to see if the drug is sex specific.
 
 ```{r}
 koreaM <- filter(korea,sex=="M")
-barchartGC(~infected + group, data=koreaM, type="percent", main = "Central Africa Male")
+barchartGC(~group + infected, data=koreaM, type="percent", main = "Central Africa Male")
 ```
 
 ```{r}
 koreaF<-filter(korea,sex=="F")
-barchartGC(~infected + group, data=koreaF, type="percent", main = "Central Africa Female")
+barchartGC(~group + infected, data=koreaF, type="percent", main = "Central Africa Female")
 ```
 
 ### Numerical Results
 
 ```{r}
-korea_table <- xtabs(~infected + group, data = korea)
+korea_table <- xtabs(~group + infected, data = korea)
 rowPerc(korea_table)
 ```
 
 ```{r}
-koreaM_table <- xtabs(~infected + group, data = koreaM)
+koreaM_table <- xtabs(~group + infected, data = koreaM)
 rowPerc(koreaM_table)
 ```
 
 
 ```{r}
-koreaF_table <- xtabs(~infected + group, data = koreaF)
+koreaF_table <- xtabs(~group + infected, data = koreaF)
 rowPerc(koreaF_table)
 ```
 
